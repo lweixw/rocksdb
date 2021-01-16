@@ -1,3 +1,25 @@
+## Build rockdb for 5.18.4 in Apple Silicon machine
+
+The rocksdb v5.18.4 is being used by Kafka stream(2.6.0+). When you are developing Kafka stream application, your unit tests with Kafka stream would fail due to there is no compatible binary provided for Apple Silicon.
+
+The purpose of this branch is to build 5.18.14+ version in Apple Silicon machine. So that you could run & test application in your local machine.
+
+**DO NOT USE IN PRODUCTION ENVIRONMENT**
+
+### Prequesite
+
+Java11 Azul Java 11 for Apple Silicon(aarch64)
+Xcode or Xcode command line
+
+### Command for build
+
+DISABLE_WARNING_AS_ERROR=1 make shared_lib rocksdbjava
+
+### artefacts
+
+`$(ROCKSDB_ROOT)/java/target/rocksdbjni-5.18.4-osx.jar`
+Copy & rename (to rocksdbjni-5.18.4.jar) the artefact above to your dependency cache folder (for maven or gradle, it's in ~/.m2/ or ~/.gradle/cache)
+
 ## RocksDB: A Persistent Key-Value Store for Flash and RAM Storage
 
 [![Linux/Mac Build Status](https://travis-ci.org/facebook/rocksdb.svg?branch=master)](https://travis-ci.org/facebook/rocksdb)
