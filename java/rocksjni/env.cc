@@ -8,7 +8,6 @@
 
 #include "rocksdb/env.h"
 #include "include/org_rocksdb_Env.h"
-#include "include/org_rocksdb_RocksEnv.h"
 #include "include/org_rocksdb_RocksMemEnv.h"
 
 /*
@@ -50,9 +49,9 @@ jint Java_org_rocksdb_Env_getThreadPoolQueueLen(JNIEnv* /*env*/,
                                                 jint pool_id) {
   auto* rocks_env = reinterpret_cast<rocksdb::Env*>(jhandle);
   switch (pool_id) {
-    case org_rocksdb_RocksEnv_FLUSH_POOL:
+    case org_rocksdb_Env_FLUSH_POOL:
       return rocks_env->GetThreadPoolQueueLen(rocksdb::Env::Priority::LOW);
-    case org_rocksdb_RocksEnv_COMPACTION_POOL:
+    case org_rocksdb_Env_COMPACTION_POOL:
       return rocks_env->GetThreadPoolQueueLen(rocksdb::Env::Priority::HIGH);
   }
   return 0;

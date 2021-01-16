@@ -219,7 +219,11 @@ java:
 		$(MAIN_SRC)/org/rocksdb/*.java
 	$(AM_V_at)@cp ../HISTORY.md ./HISTORY-CPP.md
 	$(AM_V_at)@rm -f ./HISTORY-CPP.md
-	$(AM_V_at)javah -cp $(MAIN_CLASSES) -d $(NATIVE_INCLUDE) -jni $(NATIVE_JAVA_CLASSES)
+	####$(AM_V_at)javah -cp $(MAIN_CLASSES) -d $(NATIVE_INCLUDE) -jni $(NATIVE_JAVA_CLASSES)
+	$(AM_V_at)javac $(JAVAC_ARGS) -d $(MAIN_CLASSES)\
+		-h $(NATIVE_INCLUDE) \
+		$(MAIN_SRC)/org/rocksdb/util/*.java\
+		$(MAIN_SRC)/org/rocksdb/*.java
 
 sample: java
 	$(AM_V_GEN)mkdir -p $(SAMPLES_MAIN_CLASSES)
@@ -265,7 +269,12 @@ java_test: java resolve_test_deps
 		$(TEST_SRC)/org/rocksdb/test/*.java\
 		$(TEST_SRC)/org/rocksdb/util/*.java\
 		$(TEST_SRC)/org/rocksdb/*.java
-	$(AM_V_at)javah -cp $(MAIN_CLASSES):$(TEST_CLASSES) -d $(NATIVE_INCLUDE) -jni $(NATIVE_JAVA_TEST_CLASSES)
+	###$(AM_V_at)javah -cp $(MAIN_CLASSES):$(TEST_CLASSES) -d $(NATIVE_INCLUDE) -jni $(NATIVE_JAVA_TEST_CLASSES)
+	$(AM_V_at)javac $(JAVAC_ARGS) -cp $(MAIN_CLASSES):$(JAVA_TESTCLASSPATH) -d $(TEST_CLASSES)\
+		-h $(NATIVE_INCLUDE) \
+		$(TEST_SRC)/org/rocksdb/test/*.java\
+		$(TEST_SRC)/org/rocksdb/util/*.java\
+		$(TEST_SRC)/org/rocksdb/*.java
 
 test: java java_test run_test
 

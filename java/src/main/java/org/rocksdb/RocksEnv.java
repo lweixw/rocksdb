@@ -13,7 +13,8 @@ package org.rocksdb;
  * multiple threads without any external synchronization.</p>
  */
 public class RocksEnv extends Env {
-
+  public static final int FLUSH_POOL = 0;
+  public static final int COMPACTION_POOL = 1;
   /**
    * <p>Package-private constructor that uses the specified native handle
    * to construct a RocksEnv.</p>
