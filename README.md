@@ -2,7 +2,7 @@
 
 The rocksdb v5.18.4 is being used by Kafka stream(2.6.0+). When you are developing Kafka stream application, your unit tests with Kafka stream would fail due to there is no compatible binary provided for Apple Silicon.
 
-The purpose of this branch is to build 5.18.14+ version in Apple Silicon machine. So that you could run & test application in your local machine.
+The purpose of this branch is to build 5.18.4 version in Apple Silicon machine. So that you could run & test application in your local machine.
 
 **DO NOT USE IN PRODUCTION ENVIRONMENT**
 
