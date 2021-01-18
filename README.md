@@ -1,4 +1,4 @@
-## Build rockdb for 5.18.4 in Apple Silicon machine
+## Build rocksdb 5.18.4 for Kafka stream in Apple Silicon machine
 
 The rocksdb v5.18.4 is being used by Kafka stream(2.6.0+). When you are developing Kafka stream application, your unit tests with Kafka stream would fail due to there is no compatible binary provided for Apple Silicon.
 
